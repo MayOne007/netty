@@ -33,7 +33,7 @@ public class SimpleZkClient {
 		ZooKeeper zk2;
 		ZooKeeper zk3;
 		try {
-			zk = new ZooKeeper("localhost:2181,localhost:2183", 3000, null);
+			zk = new ZooKeeper("localhost:2181", 3000, null);
 			zk2 = new ZooKeeper("localhost:2182", 3000, null);
 			zk3 = new ZooKeeper("localhost:2183", 3000, null);
 	        System.out.println("=========创建节点===========");  
@@ -52,7 +52,7 @@ public class SimpleZkClient {
 	        System.out.println(new String(zk3.getData("/test", false, null)));  
 	          
 	        System.out.println("=======删除节点==========");  
-	        zk.delete("/test", -1);  
+	        zk3.delete("/test", -1);  
 	        System.out.println("==========查看节点是否被删除============");  
 	        System.out.println("节点状态：" + zk.exists("/test", false));  
 	        zk.close();  

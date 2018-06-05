@@ -1,6 +1,7 @@
 package netty_beginner;
 
 import io.netty.buffer.ByteBuf;
+import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.ReferenceCountUtil;
@@ -11,10 +12,18 @@ import io.netty.util.ReferenceCountUtil;
  */
 public class DiscardServerHandler extends ChannelInboundHandlerAdapter { // (1)
 	
+	{
+		System.out.println("DiscardServerHandler create");
+	}
+	public static Channel channel = null;
+	
     @Override  
     public void channelActive(ChannelHandlerContext ctx){  
         System.out.println("--------------------------------handler channelActive------------");  
-          
+        if(channel!=null) {
+        	System.out.println(channel.equals(ctx.channel()));
+        }
+        channel=ctx.channel();
 //      for(int i = 0; i<10; i++){  
 //          SubscribeReq req = new SubscribeReq();  
 //          req.setAddress("深圳JJYY");  
